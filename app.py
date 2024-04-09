@@ -58,11 +58,13 @@ else:
     st.subheader("Histogram of Prices")
     plt.figure(figsize=(10, 6))
     sns.histplot(filtered_data['Price'], kde=True)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
 
     st.subheader("Scatter Plot: Price vs Area")
     plt.figure(figsize=(10, 6))
     sns.scatterplot(x='Area', y='Price', data=filtered_data)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
 
     st.subheader("Bar Chart: House Type Counts")
@@ -70,4 +72,5 @@ else:
     plt.figure(figsize=(10, 6))
     sns.barplot(x=house_type_counts.index, y=house_type_counts.values)
     plt.xticks(rotation=45)
+    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
