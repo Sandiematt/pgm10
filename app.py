@@ -3,9 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-
+# https://sandie.streamlit.app/
 username = "user"
 password = "password"
+
 
 def authenticate(username, password):
     if username == "user" and password == "password":
@@ -18,6 +19,7 @@ def is_user_logged_in():
     if "username" in st.session_state and "password" in st.session_state:
         return authenticate(st.session_state["username"], st.session_state["password"])
     return False
+
 
 if not is_user_logged_in():
     st.title("Login To View The Data")
@@ -32,11 +34,10 @@ if not is_user_logged_in():
         else:
             st.error("Incorrect username or password. Please try again.")
 else:
-
     data = {
-        'Price': [250000, 300000, 350000, 400000, 450000,500000],
-        'Area': [1500, 1800, 2000, 2200, 2500,3000],
-        'House Type': ['Apartment', 'House', 'Condo', 'Townhouse', 'Duplex','Apartment']
+        'Price': [250000, 300000, 350000, 400000, 450000, 500000],
+        'Area': [1500, 1800, 2000, 2200, 2500, 3000],
+        'House Type': ['Apartment', 'House', 'Condo', 'Townhouse', 'Duplex', 'Apartment']
     }
 
     df = pd.DataFrame(data)
@@ -56,20 +57,17 @@ else:
 
     st.subheader("Histogram of Prices")
     plt.figure(figsize=(10, 6))
-    sns.histplot(df['Price'], kde=True)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.histplot(filtered_data['Price'], kde=True)
     st.pyplot()
 
     st.subheader("Scatter Plot: Price vs Area")
     plt.figure(figsize=(10, 6))
-    sns.scatterplot(x='Area', y='Price', data=df)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
+    sns.scatterplot(x='Area', y='Price', data=filtered_data)
     st.pyplot()
 
     st.subheader("Bar Chart: House Type Counts")
-    house_type_counts = df['House Type'].value_counts()
+    house_type_counts = filtered_data['House Type'].value_counts()
     plt.figure(figsize=(10, 6))
     sns.barplot(x=house_type_counts.index, y=house_type_counts.values)
     plt.xticks(rotation=45)
-    st.set_option('deprecation.showPyplotGlobalUse', False)
     st.pyplot()
