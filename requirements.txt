@@ -1,0 +1,3 @@
+pip install matplotlib as pyplot
+pip install seaborn
+pip install pandas
